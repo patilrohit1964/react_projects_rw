@@ -1,0 +1,40 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+
+/* header styling */
+.nav-bar ul{
+    width: 200px;
+}
+.nav-bar ul li{
+    font-size: 20px;
+}
+.nav-bar ul>li:hover{
+    cursor: pointer;
+    color:black;
+}
+.circle:nth-child(1){
+    height:50px;
+    width: 50px;
+    border-radius: 50%;
+    padding: 20px;
+    top: 35px;
+}
+.circle:nth-child(2){
+    height:70px;
+    width:70px;
+    border-radius: 50%;
+    padding: 20px;
+    left: 10%;
+}
+.circle:last-child{
+    height:80px;
+    width:80px;
+    border-radius: 50%;
+    padding: 20px;
+    left: 22%;
+    top: 30px;
+}
