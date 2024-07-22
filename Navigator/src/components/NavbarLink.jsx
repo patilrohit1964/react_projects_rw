@@ -22,6 +22,6 @@ const NavbarLink = () => {
             </Navbar>
         </div>
     )
-}
+} 
 
 export default NavbarLink

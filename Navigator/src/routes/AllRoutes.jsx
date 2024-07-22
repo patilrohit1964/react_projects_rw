@@ -15,10 +15,9 @@ const AllRoutes = () => {
           <Route path='/product' element={<Product />}></Route>
         </Route>
         <Route path='/login' element={<Login />}></Route>
-        {/* <Route path='/' element={}></Route> */}
       </Routes>
     </div>
   )
-}
+} 
 
 export default AllRoutes

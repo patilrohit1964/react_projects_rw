@@ -1,12 +1,25 @@
+import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react'
 import Form from 'react-bootstrap/Form';
+import { useParams } from 'react-router-dom';
 const EditProduct = () => {
   const [userData, setUserData] = useState({
+    image:'',
     title: '',
     price: '',
     category: '',
     description: ''
   });
+  const { id } = useParams();
+  // fetched update data incomplete
+  function fetchDataWithId() {
+    axios.get(`http://localhost:8000/products/${id}`).then(e =>{
+      setUserData({title:e.data.title});
+    }).catch(e => console.log(e));
+  }
+  useEffect(() => {
+    fetchDataWithId();
+  }, []);
   // here i use useref
   const focusref = useRef();
   function updateForm(e) {
@@ -23,8 +36,12 @@ const EditProduct = () => {
     <div className='d-flex justify-content-center align-items-center' style={{ height: '80vh' }}>
       <form className='w-25 border text-center editForm pt-2' onSubmit={updateForm}>
         <label>
+          Product Image:
+          <Form.Control type="text" name="image" placeholder='enter your product image url' onChange={handleInput} ref={focusref} />
+        </label><br />
+        <label>
           Product Title:
-          <Form.Control type="text" name="title" placeholder='enter your product title' onChange={handleInput} ref={focusref} />
+          <Form.Control type="text" name="title" placeholder='enter your product title' onChange={handleInput}/>
         </label><br />
         <label>
           Price:

@@ -6,4 +6,4 @@ const Private = () => {
   return auth ? <Outlet /> : <Navigate to={'/login'}/>
 }
 
-export default Private
+export default Private 

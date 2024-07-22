@@ -1,10 +1,12 @@
 import axios from 'axios';
 import React from 'react'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 const Login = () => {
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('');
+    const navigate=useNavigate()
     function confirmLogin(e){
         e.preventDefault();
         let userData={email,password}
@@ -13,6 +15,7 @@ const Login = () => {
         }).then(e=>{
            if(e.status==200){
             localStorage.setItem('token',JSON.stringify(e.data))
+            navigate('/product')
            }
         }).catch(e=>console.log(e))
     }

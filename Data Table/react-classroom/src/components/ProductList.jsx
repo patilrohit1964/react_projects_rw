@@ -7,10 +7,10 @@ import Form from 'react-bootstrap/Form';
 const ProductList = () => {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
-  const [sorting, setSort] = useState();
+  const [sorting, setSort] = useState('low');
   useMemo(()=>{
-    
-  },[sorting])
+    sortingProducts();
+  },[sorting]);
   // fetch from json server
   function DataFetch() {
     axios.get(`http://localhost:8000/products?_page=${page}&_limit=5
@@ -20,16 +20,16 @@ const ProductList = () => {
   function sortingProducts(e) {
     if(e.target.value=='low'){
       let sortedByLow=data.sort((a,b)=>a.price - b.price);
-      setData(sortedByLow);
-      console.log("low sorted done")
+      setSort(sortedByLow)
+      console.log("low sorted done");
     }else{console.log('high')}
   }
   useEffect(() => {
     DataFetch();
-  }, [page,sorting]);
+  }, [page]);
   return (
     <div>
-      <Form.Select aria-label="Default select example" className='w-25 mt-2' onClick={sortingProducts}>
+      <Form.Select aria-label="Default select example" className='w-25 mt-2' onChange={sortingProducts}>
         <option>Sorting By</option>
         <option value="low">low to high</option>
         <option value="high">high to low</option>
@@ -39,7 +39,7 @@ const ProductList = () => {
         {data.length>0 ? data.map((e,index) => (
           <Card style={{ width: '20rem' }} className='mb-2 mt-4 text-center' key={e.id}>
             {index+1}
-            <Card.Img variant="top" src={e.image} height={300} width={300} />
+            <Card.Img variant="top" src={e.image} height={300} width={300} className='object-fit-cover' />
             <Card.Body>
               <Card.Title>{e.title}</Card.Title>
               <Card.Title>
@@ -51,7 +51,7 @@ const ProductList = () => {
               <Card.Text>
                 {e.description.substring(0, 100)}
               </Card.Text>
-              <Button variant="primary me-3"><Link to={'/editProduct'}>Edit</Link></Button>
+              <Button variant="primary me-3"><Link to={`/editProduct/${e.id}`}>Edit</Link></Button>
               <Button variant="danger">Delete</Button>
             </Card.Body>
           </Card>

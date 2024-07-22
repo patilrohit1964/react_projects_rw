@@ -17,7 +17,7 @@ const Product = () => {
             // cleanup code
             return false
         }
-    }, [])
+    }, []) 
     return (
         <div>
             <button onClick={() => {

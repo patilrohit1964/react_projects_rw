@@ -11,4 +11,4 @@ export function ToggleTheme({children}){
             {children}
         </ThemeContext.Provider>
     )
-}
+} 
