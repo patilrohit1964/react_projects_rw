@@ -239,14 +239,6 @@
         "rate": 3.6,
         "count": 145
       }
-    }, 
-    {
-      "image": "https://th.bing.com/th/id/OIP.C0POIWUyxTxZ_AeAG2lW3AHaDt?w=345&h=174&c=7&r=0&o=5&dpr=1.3&pid=1.7",
-      "title": "ai",
-      "price": "50000",
-      "category": "ai model",
-      "description": "this robot of ai",
-      "id": 21
     }
   ]
 }

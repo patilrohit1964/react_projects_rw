@@ -1,8 +1,10 @@
 import axios from 'axios';
 import React, { useEffect, useState, useRef } from 'react'
 import Form from 'react-bootstrap/Form';
+import { useNavigate } from 'react-router-dom';
 const AddProduct = () => {
   const focusref = useRef();
+  const navigate=useNavigate()
   const [userData, setUserData] = useState({
     image: '',
     title: '',
@@ -17,6 +19,7 @@ const AddProduct = () => {
     }).then(e => {
       if (e.status == 201) {
         alert("data added successfully");
+        navigate('/productList');
       }
     }).catch(e => console.log(e))
   }

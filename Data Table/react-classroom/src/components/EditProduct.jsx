@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react'
 import Form from 'react-bootstrap/Form';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 const EditProduct = () => {
   const [userData, setUserData] = useState({
     image:'',
@@ -11,7 +11,7 @@ const EditProduct = () => {
     description: ''
   });
   const { id } = useParams();
-  // fetched update data incomplete
+  // fetched update data incomplete of auto fill data
   function fetchDataWithId() {
     axios.get(`http://localhost:8000/products/${id}`).then(e =>{
       setUserData({title:e.data.title});
@@ -19,6 +19,7 @@ const EditProduct = () => {
   }
   useEffect(() => {
     fetchDataWithId();
+    focusref.current.focus();  // autofocus on component mount
   }, []);
   // here i use useref
   const focusref = useRef();
@@ -29,9 +30,6 @@ const EditProduct = () => {
   function handleInput(e) {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   }
-  useEffect(() => {
-    focusref.current.focus();  // autofocus on component mount
-  })
   return (
     <div className='d-flex justify-content-center align-items-center' style={{ height: '80vh' }}>
       <form className='w-25 border text-center editForm pt-2' onSubmit={updateForm}>
