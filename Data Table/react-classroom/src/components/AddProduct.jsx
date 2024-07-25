@@ -19,7 +19,7 @@ const AddProduct = () => {
     }).then(e => {
       if (e.status == 201) {
         alert("data added successfully");
-        navigate('/productList');
+        navigate('/products');
       }
     }).catch(e => console.log(e))
   }
@@ -29,7 +29,7 @@ const AddProduct = () => {
   }
   useEffect(() => {
     focusref.current.focus();
-  }, []);
+  }, []); 
   return (
     <div className='d-flex justify-content-center align-items-center' style={{ height: '80vh' }}>
       <form className='w-25 border text-center editForm pt-2' onSubmit={addDataInProduct}>
