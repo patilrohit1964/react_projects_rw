@@ -3,13 +3,15 @@ import { auth, googleProvider } from './firebase/firebase'
 import GoogleButton from 'react-google-button'
 import './App.css'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+
 const App = () => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const signUp = async () => {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      console.log('user signed up: ', userCredential.user);
+      alert('user signup successfully');
+      console.log(userCredential.user);
     } catch (error) {
       console.error("error Signing up: ", error.message);
     }
@@ -17,15 +19,16 @@ const App = () => {
   const login = async () => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      console.log("user logged in: ", userCredential.user);
+      alert("successfully logged user");
+      console.log('user email: ',userCredential.user.email);
     } catch (error) {
-      console.error("error loggin in: ", error.message);
+      console.log('user not found');
     }
   }
   const googleLogin = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
-      console.log('use logged in with google: ', result.user.email);
+      console.log('user logged in with google: ', result.user.email);
     } catch (error) {
       console.error("error logging in with google", error.message);
     }
@@ -37,7 +40,7 @@ const App = () => {
         <input type="password" placeholder='enter your password' onChange={(e) => setPassword(e.target.value)} /> <br />
         <button onClick={signUp}>signUp</button><button onClick={login}>Login</button><br />
         <h5>Goggle Authentication</h5>
-        <GoogleButton onClick={googleLogin} style={{margin:"10px auto"}}/>
+        <GoogleButton onClick={googleLogin} style={{ margin: "10px auto" }} />
       </div>
     </div>
   )
