@@ -22,11 +22,16 @@ const NavbarNav = () => {
             <Navbar bg="dark" data-bs-theme="dark">
                 <Container className='d-flex align-items-center'>
                     <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-                    <Nav className="ms-auto d-flex justify-content-around w-25 align-items-center">
+                    <Nav className="ms-auto d-flex justify-content-around w-50 align-items-center text-white">
                         <NavLink className='text-decoration-none text-white' to="/">Home</NavLink>
-                        {emailCheck ? <button onClick={logout}>Logout</button> :
+                        {emailCheck ?
+                            <div className='w-50 d-flex align-items-center'>
+                                <p className='pt-3'>You Signed as : {JSON.parse(emailCheck)}</p>
+                                <button onClick={logout}>Logout</button>
+                            </div>
+                            :
                             <div>
-                                <NavLink className='d-inline-block text-decoration-none text-white' to="/signup">SignUp</NavLink> 
+                                <NavLink className='d-inline-block text-decoration-none text-white' to="/signup">SignUp</NavLink>
                                 <NavLink className='d-inline-block text-decoration-none text-white ms-5' to="/login">login</NavLink>
                             </div>
                         }
