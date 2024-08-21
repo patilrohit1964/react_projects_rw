@@ -1,0 +1,32 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+div.form{
+  height: 500px;
+  border-radius: 8px;
+  width: 350px;
+  text-align: center;
+  margin:5rem auto;
+  border: 2px solid red;
+  background-color: rgb(146, 245, 245);
+}
+input{
+  display: inline-block;
+  width: 80%;
+  padding: 10px;
+  margin:20px auto;
+}
+button{
+  display: inline-block;
+  padding: 10px;
+  border: none;
+  color: white;
+  font-size: 18px;
+  outline: none;
+  cursor: pointer;
+  margin: 10px;
+  background-color: rgb(166, 126, 67);
+}
