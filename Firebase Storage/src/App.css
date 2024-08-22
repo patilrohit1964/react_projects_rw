@@ -1,0 +1,17 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.form-style {
+    background-color: rgb(31, 94, 105);
+    color: white;
+    margin:auto;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.form-style input {
+    width: 100%;
+}
