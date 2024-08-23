@@ -7,10 +7,10 @@ import { UseContextData } from '../context/ContextApi';
 const UserForm = () => {
 
 
-    const { AddData, UpdateData, formtoggle, SetformData, formData } = useContext(UseContextData)
+    const { AddData, UpdateData, formtoggle, SetformData, formData } = useContext(UseContextData);
 
     function handleChange(e) {
-        SetformData({ ...formData, [e.target.name]: e.target.value })
+        SetformData({ ...formData, [e.target.name]: e.target.value });
     }
 
     return (
