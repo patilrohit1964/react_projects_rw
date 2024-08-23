@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import GoogleButton from 'react-google-button';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
-import { auth } from '../firebase/firebase';
+import { auth, googleProvider } from '../firebase/firebase';
 const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -40,21 +40,17 @@ const SignUp = () => {
     //     }
     // }
     const googleLogin = async () => {
-        if (email == '' || password == '') {
-            alert('Please fill out all fields');
-            return;
-        } else {
-            try {
-                const result = await signInWithPopup(auth, googleProvider);
-                alert('user logged successfully with ')
-                localStorage.setItem('email', JSON.stringify(userCredential.user.email));
-                navigate('/');
-            } catch (error) {
-                console.error("error logging in with google", error.message);
-            }
+        try {
+            const result = await signInWithPopup(auth, googleProvider);
+            alert('user logged successfully with ')
+            // localStorage.setItem('email', JSON.stringify(userCredential.user.email));
+            navigate('/');
+        } catch (error) {
+            console.error("error logging in with google", error.message);
         }
+
     }
-    return (
+    return (    
         <div>
             <h3 className="text-center pt-3">SignUp</h3>
             <div className='form'>
