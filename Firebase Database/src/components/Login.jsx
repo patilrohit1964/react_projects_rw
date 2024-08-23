@@ -7,7 +7,7 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const navigate=useNavigate();
+    const navigate = useNavigate();
     // const signUp = async () => {
     //     if (email == '' || password == '') {
     //         alert('Please fill out all fields');
@@ -39,19 +39,16 @@ const Login = () => {
         }
     }
     const googleLogin = async () => {
-        if (email == '' || password == '') {
-            alert('Please fill out all fields');
-            return;
-        } else {
-            try {
-                const result = await signInWithPopup(auth, googleProvider);
-                alert('user logged successfully with ')
-                localStorage.setItem('email', JSON.stringify(userCredential.user.email));
-                navigate('/');
-            } catch (error) {
-                console.error("error logging in with google", error.message);
-            }
+
+        try {
+            const result = await signInWithPopup(auth, googleProvider);
+            alert('user logged successfully with ')
+            localStorage.setItem('email', JSON.stringify(result.user.email));
+            navigate('/');
+        } catch (error) {
+            console.error("error logging in with google", error.message);
         }
+
     }
     return (
         <div>

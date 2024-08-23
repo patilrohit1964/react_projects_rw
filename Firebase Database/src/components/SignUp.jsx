@@ -43,7 +43,7 @@ const SignUp = () => {
         try {
             const result = await signInWithPopup(auth, googleProvider);
             alert('user logged successfully with ')
-            // localStorage.setItem('email', JSON.stringify(userCredential.user.email));
+            localStorage.setItem('email', JSON.stringify(result.user.email));
             navigate('/');
         } catch (error) {
             console.error("error logging in with google", error.message);
