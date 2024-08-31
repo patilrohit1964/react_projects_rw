@@ -10,10 +10,11 @@ const AllRoutes = () => {
     return (
         <div>
             <Routes>
-                <Route element={<Private_route />}></Route>
-                <Route path="/" element={<Products />} />
-                <Route path="/editpr" element={<EditProduct />} />
-                <Route path="/addpr" element={<AddProduct />} />
+                <Route element={<Private_route />}>
+                    <Route path="/" element={<Products />} />
+                    <Route path="/addpr" element={<AddProduct />} />
+                    <Route path="/editpr" element={<EditProduct />} />
+                </Route>
                 <Route path="/login" element={<Login />} />
             </Routes>
         </div>

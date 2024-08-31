@@ -2,17 +2,22 @@ import React from 'react'
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
-const navigation = [
-    { name: 'Products', to: '/' },
-    { name: 'AddProduct', to: '/addpr' },
-    // { name: '', href: '#', current: false },
-    // { name: 'Calendar', href: '#', current: false },
-]
-function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
-}
 const Navbar = () => {
+
+    const { token } = useSelector((store) => store.LoginReducer);
+
+    function classNames(...classes) {
+        return classes.filter(Boolean).join(' ')
+    }
+
+    const navigation = [
+        { name: 'Products', to: '/' },
+        { name: 'AddProduct', to: '/addpr' },
+        !token ? { name: 'Login', to: '/login' } : { name: 'Logout' }
+    ]
+
     return (
         <div>
             <Disclosure as="nav" className="bg-gray-800">

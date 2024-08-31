@@ -4,29 +4,24 @@ import { getRequest, getResponse, reqFailed } from '../redux/ActionType';
 import axios from 'axios';
 
 const Products = () => {
-  const { data } = useSelector((store) => store.Reducer);
+  const { data } = useSelector((store) => store.ProductReducer);
   const [page, setPage] = useState(1);
-  const totalPages = []
+
   const dispatch = useDispatch();
 
   async function getData() {
     try {
       // dispatch({ type: getRequest }) ;
-      let data = await axios('http://localhost:3400/Products', {
+      let data = await axios('http://localhost:4500/Products', {
         params: {
           _page: page,
           _limit: 10
         }
       })
       dispatch({ type: getResponse, payload: data.data })
-      const totalItems = parseInt(data.headers['x-total-count'], 10);
-      const totalPage = totalItems / 10
-      for (let i = 1; i <= totalPage; i++) {
-        totalPages.push(i);
-      }
+
     } catch (err) {
       dispatch({ type: reqFailed })
-      console.log(err);
     }
   }
   useEffect(() => {
