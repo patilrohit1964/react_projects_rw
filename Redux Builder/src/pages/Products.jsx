@@ -13,6 +13,14 @@ const Products = () => {
 
   const dispatch = useDispatch();
 
+  async function DeleteProduct(productId) {
+    const deleteResponse = await axios.delete(`http://localhost:4500/Products/${productId}`);
+    if (deleteResponse) {
+      alert('Product Deleted Successfully');
+      dispatch(getData);
+    }
+  }
+
 
   useEffect(() => {
     dispatch(getData);
@@ -37,7 +45,8 @@ const Products = () => {
               <h2 className="card-title">{el.title}</h2>
               <p>{el.description.substring(1, 120)}</p>
               <div className="card-actions">
-                <button className="btn btn-primary">Buy Now</button>
+                <Link to={`/editpr/${el.id}`}><button className="btn btn-primary">Edit</button></Link>
+                <button className="btn btn-primary" onClick={() => DeleteProduct(el.id)}>Delete</button>
               </div>
             </div>
           </div>

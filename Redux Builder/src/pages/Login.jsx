@@ -16,6 +16,7 @@ const Login = () => {
     try {
       let data = await axios.post('https://reqres.in/api/login', userData);
       dispatch({ type: Login_Success, payload: data.data.token });
+      localStorage.setItem('token', data.data.token);
       navigate('/');
     } catch (err) {
       dispatch({ type: Login_Failed });
@@ -31,12 +32,12 @@ const Login = () => {
   }, [])
   const handleLogin = (e) => {
     e.preventDefault();
-    if (email.trim()==='' || password.trim()==='') {
+    if (email.trim() === '' || password.trim() === '') {
       alert('Please fill all fields');
       return;
     }
     const userData = {
-      email,  
+      email,
       password
     };
     handleUserData(userData);

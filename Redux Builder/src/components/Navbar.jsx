@@ -1,15 +1,15 @@
 import React from 'react'
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { Link } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { FaRegMoon } from "react-icons/fa";
 import { IoSunnyOutline } from "react-icons/io5";
-import {useDispatch} from 'react-redux'
+import { useDispatch } from 'react-redux'
 const Navbar = () => {
 
-    const { token } = useSelector((store) => store.LoginReducer);
-
+    let auth = localStorage.getItem('token');
+    const navigate = useNavigate();
     function classNames(...classes) {
         return classes.filter(Boolean).join(' ')
     }
@@ -17,7 +17,7 @@ const Navbar = () => {
     const navigation = [
         { name: 'Products', to: '/' },
         { name: 'AddProduct', to: '/addpr' },
-        !token ? { name: 'Login', to: '/login' } : { name: 'Logout' }
+        { name: 'Login', to: '/login' }
     ]
 
     return (
@@ -57,6 +57,7 @@ const Navbar = () => {
                                             {item.name}
                                         </Link>
                                     ))}
+                                    
                                 </div>
                             </div>
                         </div>
@@ -133,16 +134,14 @@ const Navbar = () => {
 }
 
 const ThemeNavigator = () => {
-    const dispatch=useDispatch();
-    const {theme}=useSelector((store)=>store.ProductReducer);
-  
-    function ThemeToggler(){
-        dispatch({type:'toggle'});
-       
+    const dispatch = useDispatch();
+
+    function ThemeToggler() {
+        dispatch({ type: 'toggle' });
     }
     return (
         <label className="flex cursor-pointer gap-2 items-center">
-            <IoSunnyOutline className='text-white'/>
+            <IoSunnyOutline className='text-white' />
             <input type="checkbox" value="synthwave" onChange={ThemeToggler} className="toggle theme-controller" />
             <FaRegMoon className='text-white' />
         </label>

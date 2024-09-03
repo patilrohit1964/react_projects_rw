@@ -1,14 +1,17 @@
+import axios from 'axios';
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const Description = () => {
     const { data,theme } = useSelector((store) => store.ProductReducer);
 
     const { id } = useParams();
+    
 
-    let { title, price, description, category, image } = data.find(item => item.id == id);
+    let { title, price, description, category, image,id:productId } = data.find(item => item.id == id);
 
+    
     return (
         <div className='h-screen flex items-center justify-center' style={{ backgroundColor: theme === 'light' ? 'black' : 'white', color: theme === 'light' ? 'white' : 'black' }}>
             <div className="card lg:card-side bg-base-100 shadow-xl" style={{ backgroundColor: theme === 'light' ? 'black' : 'white', color: theme === 'light' ? 'white' : 'black', boxShadow: theme === 'light' ? "2px -3px 5px #fff,2px 3px 5px #fff" : null }}>
@@ -24,7 +27,6 @@ const Description = () => {
                     <h5 className='w-80 text-3xl'>&#8377; {price}</h5>
                     <div className="card-actions justify-end">
                         <button className="btn btn-primary">Buy Now</button>
-                        <button className="btn btn-primary">Delete</button>
                     </div>
                 </div>
             </div>

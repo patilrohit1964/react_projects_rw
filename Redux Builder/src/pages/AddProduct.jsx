@@ -45,14 +45,14 @@ const AddProduct = () => {
           </div>
         </div>
         <div className="sm:col-span-2 sm:col-start-1">
-          <label htmlFor="name" className="block text-sm font-medium leading-6">
+          <label htmlFor="title" className="block text-sm font-medium leading-6">
             Product Name
           </label>
           <div className="mt-2">
             <input
               onChange={handleChange}
-              id="name"
-              name="name"
+              id="title"
+              name="title"
               placeholder='enter your product name'
               type="text"
               autoComplete="address-level2"
