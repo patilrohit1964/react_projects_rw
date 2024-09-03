@@ -3,7 +3,9 @@ import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuIt
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-
+import { FaRegMoon } from "react-icons/fa";
+import { IoSunnyOutline } from "react-icons/io5";
+import {useDispatch} from 'react-redux'
 const Navbar = () => {
 
     const { token } = useSelector((store) => store.LoginReducer);
@@ -20,6 +22,7 @@ const Navbar = () => {
 
     return (
         <div>
+
             <Disclosure as="nav" className="bg-gray-800">
                 <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                     <div className="relative flex h-16 items-center justify-between">
@@ -66,7 +69,7 @@ const Navbar = () => {
                                 <span className="sr-only">View notifications</span>
                                 <BellIcon aria-hidden="true" className="h-6 w-6" />
                             </button>
-
+                            <ThemeNavigator />
                             {/* Profile dropdown */}
                             <Menu as="div" className="relative ml-3">
                                 <div>
@@ -101,6 +104,7 @@ const Navbar = () => {
                                     </MenuItem>
                                 </MenuItems>
                             </Menu>
+
                         </div>
                     </div>
                 </div>
@@ -120,6 +124,7 @@ const Navbar = () => {
                                 {item.name}
                             </DisclosureButton>
                         ))}
+
                     </div>
                 </DisclosurePanel>
             </Disclosure>
@@ -127,4 +132,20 @@ const Navbar = () => {
     )
 }
 
+const ThemeNavigator = () => {
+    const dispatch=useDispatch();
+    const {theme}=useSelector((store)=>store.ProductReducer);
+  
+    function ThemeToggler(){
+        dispatch({type:'toggle'});
+       
+    }
+    return (
+        <label className="flex cursor-pointer gap-2 items-center">
+            <IoSunnyOutline className='text-white'/>
+            <input type="checkbox" value="synthwave" onChange={ThemeToggler} className="toggle theme-controller" />
+            <FaRegMoon className='text-white' />
+        </label>
+    )
+}
 export default Navbar

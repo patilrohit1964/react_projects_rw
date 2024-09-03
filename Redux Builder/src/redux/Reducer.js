@@ -4,6 +4,7 @@ const initialState = {
   isError: false,
   data: [],
   isLoading: false,
+  theme:'light'
 };
 export const Reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -13,6 +14,8 @@ export const Reducer = (state = initialState, action) => {
       return { isError: false, isLoading: false, data: action.payload };
     case reqFailed:
       return { isError: true, isLoading: false, data: [] };
+    case 'toggle':
+      return {...state, theme: state.theme === 'light'? 'dark' : 'light' };
     default:
       return state;
   }
