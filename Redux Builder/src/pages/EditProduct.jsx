@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -10,7 +10,7 @@ const EditProduct = () => {
   const { id } = useParams();
 
   const { title, price, category, description, image } = data.find(item => item.id == id);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   const [form, setForm] = useState({
     title: title,
@@ -23,7 +23,7 @@ const EditProduct = () => {
   const handleForm = async (e) => {
     e.preventDefault();
     const UpdateProduct = await axios.put(`http://localhost:4500/Products/${id}`, form);
-    if(UpdateProduct){
+    if (UpdateProduct) {
       alert('Product Update Successfully');
       navigate('/');
     }

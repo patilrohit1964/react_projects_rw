@@ -1,12 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Login_Request, Login_Success, Login_Failed } from '../redux/ActionType';
-import Loading from '../pages/Loading'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import Loading from '../pages/Loading';
+import { Login_Failed, Login_Request, Login_Success } from '../redux/ActionType';
 import ReqError from './ReqError';
 const Login = () => {
-  const { isError, isLoading, token } = useSelector((store) => store.LoginReducer);
+  const { isError, isLoading, } = useSelector((store) => store.LoginReducer);
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -21,13 +21,12 @@ const Login = () => {
     } catch (err) {
       dispatch({ type: Login_Failed });
     }
-
   };
 
   useEffect(() => {
-    if (token) {
+    const auth = localStorage.getItem('token');
+    if (auth) {
       navigate('/');
-      // dispatch({ type: Login_Success, payload: token });
     }
   }, [])
   const handleLogin = (e) => {

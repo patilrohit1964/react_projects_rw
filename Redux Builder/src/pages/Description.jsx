@@ -1,17 +1,16 @@
-import axios from 'axios';
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 const Description = () => {
-    const { data,theme } = useSelector((store) => store.ProductReducer);
+    const { data, theme } = useSelector((store) => store.ProductReducer);
 
     const { id } = useParams();
-    
 
-    let { title, price, description, category, image,id:productId } = data.find(item => item.id == id);
 
-    
+    let { title, price, description, category, image, id: productId } = data.find(item => item.id == id);
+
+
     return (
         <div className='h-screen flex items-center justify-center' style={{ backgroundColor: theme === 'light' ? 'black' : 'white', color: theme === 'light' ? 'white' : 'black' }}>
             <div className="card lg:card-side bg-base-100 shadow-xl" style={{ backgroundColor: theme === 'light' ? 'black' : 'white', color: theme === 'light' ? 'white' : 'black', boxShadow: theme === 'light' ? "2px -3px 5px #fff,2px 3px 5px #fff" : null }}>
