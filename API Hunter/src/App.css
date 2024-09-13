@@ -1,14 +1,16 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-.login-form{
+
+.login-form {
   height: 100vh;
   background-color: black;
   color: wheat;
 }
-.form-row{
+
+.form-row {
   border: 2px solid orange;
   width: 350px;
   height: 400px;
