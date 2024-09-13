@@ -25,7 +25,7 @@ function Dashboard() {
     <div>
       <h3>Dashboard</h3>
       <div>
-        <button data-testid="logout-btn" onClick={LogoutUser} style={{ backgroundColor: "#4cae4f", padding: "8px", color: "white" }}>Logout</button>
+        <button data-testid="logout-btn" onClick={LogoutUser} style={{ backgroundColor: "#4cae4f", color: "white" }}>Logout</button>
         <p>
           Token:
           <b data-testid="user-token">{token}</b>
